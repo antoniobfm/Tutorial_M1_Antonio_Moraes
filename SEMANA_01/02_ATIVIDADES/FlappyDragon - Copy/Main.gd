@@ -2,7 +2,7 @@ extends Node # instancia a classe Node2D
 
 var status = 1 # Se está jogando
 var vscore = 0 # Score do player
-var x = 1.5 # Velocidade horizontal
+export (float) var x = 1.5 # Velocidade horizontal
 var y = 10 # Gravidade
 
 # executa essa função ao carregar o jogo
@@ -20,13 +20,6 @@ func _process(delta):
 		$background.position.x -= 1*x
 		if ($background.position.x) < -200:
 			$background.position.x = 600
-			
-		# movimenta as colunas para colisão
-		$columns.position.x -= 2*x
-		$columns.position.x -= 2*x
-		if ($columns.position.x) < -550:
-			$columns.position.x = rand_range(0, 350) - 50
-			$columns.position.y = rand_range(0, 400) - 200
 		
 		# puxa o dragão para baixo
 		$dragon.position.y += y
@@ -46,7 +39,7 @@ func _process(delta):
 
 		# se apertou seta para cima, diminui o valor de y (posição vertical) do dragão
 		if Input.is_action_pressed("ui_up"):
-			$dragon.position.y -= 4
+			$dragon.position.y -= y * 2
 			
 	elif status == 0: # parado
 		
