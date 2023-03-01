@@ -23,7 +23,8 @@ margin_right = 267.0
 margin_bottom = 173.0
 text = "+"
 
-[node name="task_list" type="VBoxContainer" parent="."]
+[node name="task_list3" type="VBoxContainer" parent="."]
+visible = false
 margin_left = 45.0
 margin_top = 206.0
 margin_right = 268.0
@@ -33,11 +34,17 @@ __meta__ = {
 "_editor_description_": "Texte"
 }
 
+[node name="task_list" type="GridContainer" parent="."]
+margin_left = 43.0
+margin_top = 188.0
+margin_right = 284.0
+margin_bottom = 431.0
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = 38.0
 margin_top = 41.0
-margin_right = 324.0
-margin_bottom = 85.0
+margin_right = 221.0
+margin_bottom = 80.0
 theme = ExtResource( 2 )
 text = "THE todolist"
 scroll_active = false

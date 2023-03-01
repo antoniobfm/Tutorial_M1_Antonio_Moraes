@@ -1,7 +1,7 @@
 extends Node2D
 
 var tasks = []
-var placeholder_tasks = ["Isso daqui é para concluir a primeira tarefa", "Sim"]
+var placeholder_tasks = ["Isso daqui é para concluir a primeira tarefa", "Sim", "uau"]
 
 # Função que deleta todos os nodes filhos do node passado
 static func delete_children(node):
@@ -20,15 +20,14 @@ func update_list():
 	
 	# Loopa pela lista de tasks
 	for x in tasks:
-		# Cria um novo node RichTextLabel
-		var new_text = RichTextLabel.new()
+		# Cria uma nova task
+		var task_scene = load("res://task.tscn").instance()
 		
 		# Atualiza propriedades do novo node
-		new_text.text = x
-		new_text.fit_content_height = true
+		task_scene.title = x
 		
 		# Adiciona ele como filho do Container Vertical
-		$task_list.add_child(new_text)
+		$task_list.add_child(task_scene)
 		
 # Salva a nova task para memoria
 func add_task():
@@ -58,12 +57,11 @@ func _input(event):
 func _ready():
 	# Loopa pela lista de tasks
 	for x in placeholder_tasks:
-		# Cria um novo node RichTextLabel
-		var new_text = RichTextLabel.new()
+		# Cria uma nova task
+		var task_scene = load("res://task.tscn").instance()
 		
-		# Atualiza propriedades do novo node
-		new_text.text = x
-		new_text.fit_content_height = true
+		# Atualiza propriedades da nova task
+		task_scene.title = x
 		
-		# Adiciona ele como filho do Container Vertical
-		$task_list.add_child(new_text)
+		# Adiciona ela como filho do Container Vertical
+		$task_list.add_child(task_scene)
