@@ -28,7 +28,7 @@ func update_list():
 		
 		# Adiciona ele como filho do Container Vertical
 		$task_list.add_child(task_scene)
-		
+
 # Salva a nova task para memoria
 func add_task():
 	# Adiciona o texto do input de texto para o final da lista de tarefas

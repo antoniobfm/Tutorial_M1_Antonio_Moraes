@@ -1,0 +1,116 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://frames/Monsters/Demon/big_demon_idle_anim_f0.png" type="Texture" id=1]
+[ext_resource path="res://frames/Monsters/Demon/big_demon_idle_anim_f1.png" type="Texture" id=2]
+[ext_resource path="res://frames/Monsters/Demon/big_demon_idle_anim_f3.png" type="Texture" id=3]
+[ext_resource path="res://frames/Monsters/Demon/big_demon_run_anim_f0.png" type="Texture" id=4]
+[ext_resource path="res://frames/Monsters/Demon/big_demon_idle_anim_f2.png" type="Texture" id=5]
+[ext_resource path="res://frames/Monsters/Demon/big_demon_run_anim_f1.png" type="Texture" id=6]
+[ext_resource path="res://Audio/25_orc_walk_stone_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://frames/Monsters/Demon/big_demon_run_anim_f2.png" type="Texture" id=8]
+[ext_resource path="res://Monsters/Demon/Demon.gd" type="Script" id=9]
+[ext_resource path="res://frames/Monsters/Demon/big_demon_run_anim_f3.png" type="Texture" id=10]
+[ext_resource path="res://Audio/22_orc_jump_2.wav" type="AudioStream" id=11]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 3.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "Running",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9, 12 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 13 )
+
+[node name="Demon" type="KinematicBody2D"]
+script = ExtResource( 9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+max_distance = 100.0
+attenuation = 2.11633
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+self_modulate = Color( 1, 0, 0, 1 )
+light_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+modulate = Color( 1, 0, 0, 1 )
+self_modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 0, 4 )
+shape = SubResource( 3 )
+
+[node name="Attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]

@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/25_orc_walk_stone_1.wav-6d23c37991daf7ff98895b96d1a19e2e.sample"
+
+[deps]
+
+source_file="res://Audio/25_orc_walk_stone_1.wav"
+dest_files=[ "res://.import/25_orc_walk_stone_1.wav-6d23c37991daf7ff98895b96d1a19e2e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
